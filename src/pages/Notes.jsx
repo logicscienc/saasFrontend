@@ -80,24 +80,24 @@ const Notes = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* Navbar */}
-      <header className="w-full px-6 py-4 flex justify-between items-center 
-                         bg-black/70 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-700/50">
-        <div className="absolute left-1/2 -translate-x-1/2 text-center">
-          <h1 className="text-xl font-semibold text-white">
+      <header className="w-full px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center 
+                         bg-black/70 backdrop-blur-lg shadow-lg sticky top-0 z-50 border-b border-gray-700/50 gap-4 md:gap-0">
+        <div className="md:absolute md:left-1/2 md:-translate-x-1/2 text-center">
+          <h1 className="text-lg sm:text-xl font-semibold text-white">
             Tenant: <span className="text-yellow-400">{tenantName}</span> | Plan:{" "}
             <span className={`font-bold ${plan === "Pro" ? "text-green-400 animate-pulse" : "text-blue-400"}`}>
               {plan}
             </span>
           </h1>
-          <p className="text-sm text-gray-300">Logged in as: <span className="text-white">{userName}</span></p>
+          <p className="sm:text-sm text-xs  text-gray-300">Logged in as: <span className="text-white">{userName}</span></p>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center gap-3">
           {/* Upgrade Button */}
           <button
             onClick={handleUpgrade}
             disabled={plan === "pro"}
-            className={`relative flex items-center gap-2 px-4 py-2 rounded-lg shadow-md font-medium transition
+            className={`w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-lg shadow-md font-medium transition text-sm sm:text-base
               ${plan === "pro"
                 ? "bg-gray-600 text-gray-300 cursor-not-allowed"
                 : "bg-yellow-500 text-black hover:bg-yellow-400"
@@ -113,7 +113,7 @@ const Notes = () => {
               dispatch(logout());            // clear Redux state
               window.location.href = "/"; // redirect to login page
             }}
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-400"
+            className="w-full sm:w-auto bg-black text-white px-4 py-2 rounded hover:bg-gray-900 transition text-sm sm:text-base"
           >
             Logout
           </button>
@@ -132,14 +132,14 @@ const Notes = () => {
         )}
       </header>
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar */}
-        <aside className="w-60 p-4 border-r border-gray-300 bg-black/20 backdrop-blur-md">
+        <aside className="w-full md:w-60 p-4 border-b md:border-r border-gray-300 bg-black/20 backdrop-blur-md">
           {plan === "Pro" || notesCount < noteLimit ? (
             <button
               onClick={handleCreateNote}
               className="w-full flex items-center justify-center gap-2 px-4 py-3 
-                         bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition"
+                         bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-500 transition text-sm sm:text-base"
             >
               <FaPlus />
               Create Note
@@ -152,7 +152,7 @@ const Notes = () => {
         </aside>
 
         {/* Notes Area */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-4 sm:p-6">
           {loading ? (
             <p className="text-center text-gray-300">Loading...</p>
           ) : notesCount === 0 ? (
@@ -160,11 +160,11 @@ const Notes = () => {
               <p className="text-lg">You have no notes yet.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {notes.map((note) => (
                 <div
                   key={note._id}
-                  className="bg-black/70 p-4 rounded-xl shadow-lg flex flex-col justify-between h-64"
+                  className="bg-black/70 p-4 rounded-xl shadow-lg flex flex-col justify-between h-64 hover:scale-[1.02] transition-transform"
                 >
                   <div className="overflow-y-auto mb-4">
                     <h2 className="font-bold text-lg text-yellow-400">{note.title}</h2>

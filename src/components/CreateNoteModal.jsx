@@ -48,9 +48,9 @@ const CreateNoteModal = ({ onClose, note }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-      <div className="bg-black/80 backdrop-blur-md text-white p-6 rounded-xl w-full max-w-md shadow-lg">
-        <h2 className="text-xl font-semibold mb-4">{note ? "Edit Note" : "Create New Note"}</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50 px-4 sm:px-6 overflow-y-auto">
+      <div className="relative w-full max-w-md sm:max-w-lg bg-black/80 backdrop-blur-md text-white p-4 sm:p-6 rounded-xl shadow-lg my-8">
+        <h2 className="text-lg sm:text-xl font-semibold mb-4 text-center sm:text-left">{note ? "Edit Note" : "Create New Note"}</h2>
 
         {/* Title Input */}
         <input
@@ -58,7 +58,7 @@ const CreateNoteModal = ({ onClose, note }) => {
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full mb-4 p-3 rounded-lg bg-white/10 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full mb-4 p-2 sm:p-3 rounded-lg bg-white/10 placeholder-gray-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
 
         {/* Content Textarea */}
@@ -67,21 +67,21 @@ const CreateNoteModal = ({ onClose, note }) => {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows={5}
-          className="w-full mb-4 p-3 rounded-lg bg-white/10 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+          className="w-full mb-4 p-2 sm:p-3 rounded-lg bg-white/10 placeholder-gray-300 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
         />
 
         {/* Buttons */}
-        <div className="flex justify-end gap-3">
+        <div className="flex flex-col sm:flex-row justify-end gap-3">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-500 transition"
+            className="px-4 py-2 w-full sm:w-auto rounded-lg bg-gray-600 hover:bg-gray-500 transition text-sm sm:text-base"
           >
             Cancel
           </button>
           <button
             onClick={handleSave}
             disabled={saving}
-            className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition disabled:opacity-50"
+            className="px-4 py-2 w-full sm:w-auto rounded-lg bg-blue-600 hover:bg-blue-500 transition text-sm sm:text-base disabled:opacity-50"
           >
            {note ? "Edit" : "Save"}
           </button>
